@@ -14,7 +14,7 @@ void Node::onEnter(std::vector<std::string> *args) { if (_onEnter) _onEnter({ .n
 bool Node::beforeExit(node_id_t toNode) { if (_beforeExit) return _beforeExit({ .node =  this, .nodeId = toNode, .data = this->_data, .extData = _extData }); return true; }
 
 Edge::Edge(std::string name, std::string description, node_id_t startId, node_id_t endId, edge_event onTransition,
-           long data, void *extData, bool sensorEnable)
+           long data, void *extData, bool *sensorEnable)
         : _name(std::move(name)), _description(std::move(description)), _fromToTuple(std::make_pair(startId, endId)), _onTransition(onTransition), _data(data), _extData(extData), _sensorEnable(sensorEnable) { }
 
 std::string Edge::getName() { return _name; }
