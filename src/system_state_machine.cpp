@@ -25,7 +25,7 @@ node_id_t Edge::getFromNodeId() { return _fromToTuple.first; }
 
 node_id_t Edge::getToNodeId() { return _fromToTuple.second; }
 
-bool Edge::onTransition(std::vector<std::string> *args) { if (_onTransition) { return _onTransition({ .edge = this, .data = _data, .extData = _extData, .args = args, .sensorEnable = _sensorEnable }); } return true; }
+bool Edge::onTransition(std::vector<std::string> *args) { if (_onTransition) { return _onTransition({ .edge = this, .data = _data, .extData = _extData, .sensorEnable = _sensorEnable, .args = args}); } return true; }
 
 StateManager::StateManager(Node *startNode, Logging *logger) : _start(startNode), _logger(logger) {
     if (!_start) {
