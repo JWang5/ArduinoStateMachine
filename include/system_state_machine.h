@@ -71,7 +71,7 @@ private:
     edge_event _onTransition;
     long _data;
     void *_extData;
-    bool * sensorEnable;
+    bool *_sensorEnable;
 public:
     Edge(std::string name, std::string description, node_id_t startId, node_id_t endId, edge_event onTransition = nullptr, long data = 0, void *extData = nullptr, bool *sensorEnable = nullptr);
 
