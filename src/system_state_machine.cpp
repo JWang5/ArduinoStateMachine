@@ -14,8 +14,8 @@ void Node::onEnter(std::vector<std::string> *args) { if (_onEnter) _onEnter({ .n
 bool Node::beforeExit(node_id_t toNode) { if (_beforeExit) return _beforeExit({ .node =  this, .nodeId = toNode, .data = this->_data, .extData = _extData }); return true; }
 
 Edge::Edge(std::string name, std::string description, node_id_t startId, node_id_t endId, edge_event onTransition,
-           long data, void *extData)
-        : _name(std::move(name)), _description(std::move(description)), _fromToTuple(std::make_pair(startId, endId)), _onTransition(onTransition), _data(data), _extData(extData) { }
+           long data, void *extData, bool *sensorEnable)
+        : _name(std::move(name)), _description(std::move(description)), _fromToTuple(std::make_pair(startId, endId)), _onTransition(onTransition), _data(data), _extData(extData), _sensorEnable(sensorEnable) { }
 
 std::string Edge::getName() { return _name; }
 
@@ -25,7 +25,7 @@ node_id_t Edge::getFromNodeId() { return _fromToTuple.first; }
 
 node_id_t Edge::getToNodeId() { return _fromToTuple.second; }
 
-bool Edge::onTransition(std::vector<std::string> *args) { if (_onTransition) { return _onTransition({ .edge = this, .data = _data, .extData = _extData, .args = args }); } return true; }
+bool Edge::onTransition(std::vector<std::string> *args) { if (_onTransition) { return _onTransition({ .edge = this, .data = _data, .extData = _extData, .args = args, .sensorEnable = _sensorEnable }); } return true; }
 
 StateManager::StateManager(Node *startNode, Logging *logger) : _start(startNode), _logger(logger) {
     if (!_start) {
