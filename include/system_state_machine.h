@@ -26,7 +26,7 @@ typedef struct {
     Edge* edge;
     long data;
     void *extData;
-    bool *sensorEnable;
+    bool sensorEnable;
     std::vector<std::string> *args;
 } edge_event_data;
 
@@ -71,9 +71,9 @@ private:
     edge_event _onTransition;
     long _data;
     void *_extData;
-    bool *_sensorEnable;
+    bool _sensorEnable;
 public:
-    Edge(std::string name, std::string description, node_id_t startId, node_id_t endId, edge_event onTransition = nullptr, long data = 0, void *extData = nullptr, bool *sensorEnable = nullptr);
+    Edge(std::string name, std::string description, node_id_t startId, node_id_t endId, edge_event onTransition = nullptr, long data = 0, void *extData = nullptr, bool sensorEnable = false);
 
     std::string getName();
     std::string getDescription();
